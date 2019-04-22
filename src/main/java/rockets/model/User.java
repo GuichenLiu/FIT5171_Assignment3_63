@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.Validate.notBlank;
 
+// HÂHHAHAHHAHAHAHAHAHAHHAHAHAHAHAHHAHAHA
+
 public class User extends Entity {
 
     private String firstName;
