@@ -47,7 +47,7 @@ public class RocketMinerUnitTest {
         int[] lspIndex = new int[]{0, 0, 0, 1, 1};
         // 5 rockets
         for (int i = 0; i < 5; i++) {
-            rockets.add(new Rocket("rocket_" + i, "Block5","USA", lsps.get(lspIndex[i])));
+            rockets.add(new Rocket("rocket_" + i, "USA", lsps.get(lspIndex[i])));
         }
         // month of each launch
         int[] months = new int[]{1, 6, 4, 3, 4, 11, 6, 5, 12, 5};

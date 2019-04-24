@@ -13,7 +13,6 @@ public abstract class Entity {
         this.wikilink = wikilink;
     }
 
-
     public Long getId() {
         return id;
     }

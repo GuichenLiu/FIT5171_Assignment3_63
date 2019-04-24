@@ -28,14 +28,14 @@ public class LaunchServiceProvider extends Entity {
         return input.matches("[0-9]+");
     }
 
-    public boolean isInRange(String input, int i) {return input.length()<i;}
+    public boolean isInRange(String input, int i,int j) {return input.length()>i && input.length()<j;}
 
-    public boolean notFutureYear(int year) {
+    public boolean validYear(int year) {
         Date date = new Date();
         String strDateFormat = "yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
         //System.out.println(sdf);
-        if(year<Integer.valueOf(sdf.format(date))) return true;
+        if(year>1900 && year<Integer.valueOf(sdf.format(date))) return true;
         else return false;
     }
 
@@ -44,9 +44,9 @@ public class LaunchServiceProvider extends Entity {
         if(onlyCharacter(name)
                 && onlyCharacter(country)
                 && isInteger(String.valueOf(yearFounded))
-                && notFutureYear(yearFounded)
-                && isInRange(name,30)
-                && isInRange(country, 30)){
+                && validYear(yearFounded)
+                && isInRange(name,0, 30)
+                && isInRange(country, 0, 30)){
             this.name = name;
             this.yearFounded = yearFounded;
             this.country = country;
@@ -81,7 +81,7 @@ public class LaunchServiceProvider extends Entity {
 
         //ADDED
         notBlank(headquarters, "headquarter cannot be null or empty" );
-        if (isInRange(headquarters, 30)) {
+        if (isInRange(headquarters, 0,30)) {
             this.headquarters = headquarters;
         }
         else throw new IllegalArgumentException("headquarter must be under 30 characters");
