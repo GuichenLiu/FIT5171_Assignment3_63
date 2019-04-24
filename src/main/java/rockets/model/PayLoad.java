@@ -6,7 +6,7 @@ import java.util.Objects;
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
 
-public class PayLoad extends Entity{
+public class PayLoad {
 
     //satellite, space probe, spacecraft
     private String type;

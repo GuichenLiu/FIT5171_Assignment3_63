@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -45,7 +44,7 @@ public class Neo4jDAOUnitTest {
     public void setup() {
         esa = new LaunchServiceProvider("ESA", 1970, "Europe");
         spacex = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        rocket = new Rocket("F9","USA", spacex);
+        rocket = new Rocket("F9", "Block 5","USA", spacex);
     }
 
     @Test
@@ -84,8 +83,8 @@ public class Neo4jDAOUnitTest {
     public void shouldNotSaveTwoSameRockets() {
         assertNull(spacex.getId());
 
-        Rocket rocket1 = new Rocket("F9",  "USA", spacex);
-        Rocket rocket2 = new Rocket("F9", "USA", spacex);
+        Rocket rocket1 = new Rocket("F9", "Block 5", "USA", spacex);
+        Rocket rocket2 = new Rocket("F9", "Block 5","USA", spacex);
         assertEquals(rocket1, rocket2);
         dao.createOrUpdate(rocket1);
         assertNotNull(spacex.getId());
@@ -103,9 +102,9 @@ public class Neo4jDAOUnitTest {
     @Test
     public void shouldLoadAllRockets() {
         Set<Rocket> rockets = Sets.newHashSet(
-                new Rocket("Ariane4", "France", esa),
-                new Rocket("F5", "USA", spacex),
-                new Rocket("BFR", "USA", spacex)
+                new Rocket("Ariane4","Block 5", "France", esa),
+                new Rocket("F5", "Block 5","USA", spacex),
+                new Rocket("BFR", "Block 5","USA", spacex)
         );
 
         for (Rocket r : rockets) {
