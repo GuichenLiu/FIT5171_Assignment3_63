@@ -2,12 +2,13 @@ package rockets.model;
 
 import com.google.common.collect.Sets;
 
+import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import static org.apache.commons.lang3.Validate.*;
+import static rockets.model.Launch.LaunchOutcome.FAILED;
+import static rockets.model.Launch.LaunchOutcome.SUCCESSFUL;
 
 public class LaunchServiceProvider extends Entity {
     private String name;
@@ -20,41 +21,66 @@ public class LaunchServiceProvider extends Entity {
 
     private Set<Rocket> rockets;
 
-    public boolean onlyCharacter(String input) {
-        return input.matches("[a-zA-Z\\s]+");
-    }
+    private Set<Launch> launchs;
 
-    public boolean isInteger(String input){
-        return input.matches("[0-9]+");
-    }
-
-    public boolean isInRange(String input, int i,int j) {return input.length()>i && input.length()<j;}
-
-    public boolean validYear(int year) {
-        Date date = new Date();
-        String strDateFormat = "yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
-        //System.out.println(sdf);
-        if(year>1900 && year<Integer.valueOf(sdf.format(date))) return true;
-        else return false;
-    }
+    //cc new
+    private BigDecimal totalRevenue;
+   private int percentage;
+   private int Dominant;
 
     public LaunchServiceProvider(String name, int yearFounded, String country) {
+        this.name = name;
+        this.yearFounded = yearFounded;
+        this.country = country;
 
-        if(onlyCharacter(name)
-                && onlyCharacter(country)
-                && isInteger(String.valueOf(yearFounded))
-                && validYear(yearFounded)
-                && isInRange(name,0, 30)
-                && isInRange(country, 0, 30)){
-            this.name = name;
-            this.yearFounded = yearFounded;
-            this.country = country;
+        rockets = Sets.newLinkedHashSet();// new
+    }
 
-            rockets = Sets.newLinkedHashSet();
+    //new
+    public BigDecimal getTotalRevenue(int year) {
+        BigDecimal totalRevenue = new BigDecimal(0.00);
+        Set<Launch> set = getLaunchs();
+        for (Launch st : set) {
+            if (st.getLaunchDate().getYear()==year)
+            {
+                totalRevenue.add(st.getPrice());
+            }
         }
-        else {throw new IllegalArgumentException("Year must be an integer, name and country must only contain character, less than 30 in length");}
+        return totalRevenue;
+    }
 
+    public int getPercentage() {
+        Set<Launch> set = getLaunchs();
+        int succ=0;
+        for (Launch st : set) {
+            if (st.getLaunchOutcome()==SUCCESSFUL)
+            {
+                succ+=1;
+            }
+        }
+        percentage = succ/getLaunchs().size();
+        return percentage;
+    }
+
+    public int getDominant(String orbit) {
+        Set<Launch> set = getLaunchs();
+        int Dominant =0;
+        for (Launch st : set) {
+            if (st.getOrbit()==orbit)
+            {
+                Dominant+=1;
+            }
+        }
+
+        return Dominant;
+    }
+
+    public Set<Launch> getLaunchs() {
+        return launchs;
+    }
+
+    public void setLaunchs(Set<Launch> launchs) {
+        this.launchs = launchs;
     }
 
     public String getName() {
@@ -73,23 +99,15 @@ public class LaunchServiceProvider extends Entity {
         return headquarters;
     }
 
-
-    public Set<Rocket> getRockets() { return rockets; }
-
+    public Set<Rocket> getRockets() {
+        return rockets;
+    }
 
     public void setHeadquarters(String headquarters) {
-
-        //ADDED
-        notBlank(headquarters, "headquarter cannot be null or empty" );
-        if (isInRange(headquarters, 0,30)) {
-            this.headquarters = headquarters;
-        }
-        else throw new IllegalArgumentException("headquarter must be under 30 characters");
-
+        this.headquarters = headquarters;
     }
 
     public void setRockets(Set<Rocket> rockets) {
-        notNull(rockets, "rockets cannot be null or empty" );
         this.rockets = rockets;
     }
 
@@ -105,6 +123,7 @@ public class LaunchServiceProvider extends Entity {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(name, yearFounded, country);
     }
 }
