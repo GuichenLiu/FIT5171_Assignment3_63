@@ -24,7 +24,7 @@
                     </dependency>
                 </dependencies>
 
-                
+
                 <dependencies>
                 <dependency>
                     <groupId>org.slf4j</groupId>
@@ -49,9 +49,11 @@
                 <configuration>
                     <targetClasses>
                         <param>rockets.model.*</param>
-                        <param>rockets.dataaccess.*</param>
                         <param>rockets.mining.*</param>
+                        <!--
+                        <param>rockets.dataaccess.*</param>
                         <param>rockets.web.*</param>
+                        -->
                     </targetClasses>
                     <excludedMethods>
                         <excludedMethod>hashCode</excludedMethod>
