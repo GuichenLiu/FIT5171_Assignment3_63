@@ -9,17 +9,26 @@
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
+
+                <!--<version>1.4.7</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.pitest</groupId>
-                        <artifactId>pitest-maven</artifactId>
-                        <version>1.3.2</version>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>0.7</version>
                     </dependency>
+                </dependencies>-->
+                <dependencies>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                    <version>1.7.21</version>
+                    <scope>compile</scope>
+                </dependency>
                 </dependencies>
 
                 <configuration>
@@ -28,6 +37,7 @@
                 </configuration>
             </plugin>
 
+
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
@@ -35,9 +45,9 @@
                 <configuration>
                     <targetClasses>
                         <param>rockets.model.*</param>
-                        <!-- <param>rockets.dataaccess.*</param> -->
+                        <param>rockets.dataaccess.*</param>
                         <param>rockets.mining.*</param>
-                        <!--<param>rockets.web.*</param>-->
+                        <param>rockets.web.*</param>
                     </targetClasses>
                     <excludedMethods>
                         <excludedMethod>hashCode</excludedMethod>
@@ -49,6 +59,8 @@
                     </outputFormats>
                 </configuration>
             </plugin>
+
+
 
         </plugins>
     </build>
