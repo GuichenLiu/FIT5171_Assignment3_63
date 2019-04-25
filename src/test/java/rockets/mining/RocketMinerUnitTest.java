@@ -106,9 +106,9 @@ public class RocketMinerUnitTest {
 
 
 
-       lsps.get(0).setRockets(set6);
+        lsps.get(0).setRockets(set6);
         lsps.get(1).setRockets(set7);
-     //lsps.get(2).setRockets(set8);
+        //lsps.get(2).setRockets(set8);
 
     }
 
