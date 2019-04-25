@@ -25,9 +25,9 @@ public class RocketUnitTest {
     public void shouldConstructRocketObject() {
         String name = "BFR";
         String country = "USA";
-        //String variation ="ccc";
+        String variation ="ccc";
         LaunchServiceProvider  manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name, variation,country,manufacturer);
         assertNotNull(bfr);
     }
 
@@ -36,8 +36,8 @@ public class RocketUnitTest {
     public void shouldThrowExceptionWhenNoManufacturerGiven() {
         String name = "BFR";
         String country = "USA";
-        //String variation ="ccc";
-        assertThrows(NullPointerException.class, () -> new Rocket(name, country, null));
+        String variation ="ccc";
+        assertThrows(NullPointerException.class, () -> new Rocket(name, variation, country, null));
     }
 
     @DisplayName("should set rocket massToLEO value")
@@ -45,10 +45,10 @@ public class RocketUnitTest {
     public void shouldSetMassToLEOWhenGivenCorrectValue(String massToLEO) {
         String name = "BFR";
         String country = "USA";
-        //String variation ="ccc";
+        String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
 
-        Rocket bfr = new Rocket(name,country, manufacturer);
+        Rocket bfr = new Rocket(name,variation, country, manufacturer);
 
         bfr.setMassToLEO(massToLEO);
         assertEquals(massToLEO, bfr.getMassToLEO());
@@ -59,9 +59,9 @@ public class RocketUnitTest {
     public void shouldThrowExceptionWhenSetMassToLEOToNull() {
         String name = "BFR";
         String country = "USA";
-        //String variation ="ccc";
+        String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name, country,manufacturer);
+        Rocket bfr = new Rocket(name, variation, country,manufacturer);
         assertThrows(NullPointerException.class, () -> bfr.setMassToLEO(null));
     }
 
@@ -73,9 +73,9 @@ public class RocketUnitTest {
     public void shouldThrowExceptionWhenSetMassToLEOToInvalid(String massToLEO) {
         String name = "BFR";
         String country = "USA";
-        //String variation ="ccc";
+        String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name,variation,country,manufacturer);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToLEO("..//~"));
         assertEquals("MassToLEO should contain numbers", exception.getMessage());
@@ -92,7 +92,7 @@ public class RocketUnitTest {
         String country = "USA";
         String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name,variation, country,manufacturer);
 
 //        NullPointerException exception = assertThrows(NullPointerException.class,
 //                () -> bfr.setMassToGTO(null));
@@ -111,9 +111,9 @@ public class RocketUnitTest {
     public void shouldThrowExceptionWhenSetMassToGTOToEmpty(String massToGTO) {
         String name = "BFR";
         String country = "USA";
-        //String variation ="ccc";
+        String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name,variation, country,manufacturer);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToGTO(massToGTO));
         assertEquals("MassToGTO cannot be null or empty", exception.getMessage());
@@ -129,7 +129,7 @@ public class RocketUnitTest {
         String country = "USA";
         String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name,variation, country,manufacturer);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToGTO("..//~"));
         assertEquals("MassToGTO should contain numbers", exception.getMessage());
@@ -147,7 +147,7 @@ public class RocketUnitTest {
         String country = "USA";
         String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name,variation, country,manufacturer);
 
         NullPointerException exception = assertThrows(NullPointerException.class,
                 () -> bfr.setMassToOther(null));
@@ -164,7 +164,7 @@ public class RocketUnitTest {
         String country = "USA";
         String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name,variation,country,manufacturer);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToOther(massToOther));
         assertEquals("MassToOther cannot be null or empty", exception.getMessage());
@@ -179,7 +179,7 @@ public class RocketUnitTest {
         String country = "USA";
         String variation ="ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,country,manufacturer);
+        Rocket bfr = new Rocket(name,variation,country,manufacturer);
 
 
         bfr.setMassToOther("600 to");
