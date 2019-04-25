@@ -52,16 +52,16 @@ public class Rocket extends Entity {
         notNull(name);
         notNull(country);
         notNull(manufacturer);
-     //
+        //
         if(
                 haveCharaters(name)
-                   &&onlyCharacter(country)
-                //&&onlyCharacter(manufacturer)
-                &&isInRange(name,30)
-                 //&&isInRange(variation,30)
-                &&isInRange(country,30)
-                //&&isInRange(manufacturer,30)
-         )
+                        &&onlyCharacter(country)
+                        //&&onlyCharacter(manufacturer)
+                        &&isInRange(name,30)
+                        &&isInRange(variation,30)
+                        &&isInRange(country,30)
+            //&&isInRange(manufacturer,30)
+        )
         {
             this.name = name;
             this.variation = variation;
@@ -199,4 +199,3 @@ public class Rocket extends Entity {
                 '}';
     }
 }
-// hahahah
