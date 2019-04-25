@@ -3,6 +3,7 @@ package rockets.model;
 import com.google.common.collect.Sets;
 
 import java.math.BigDecimal;
+import java.math.*;
 import java.util.Objects;
 import java.util.Set;
 import java.text.SimpleDateFormat;
@@ -123,7 +124,7 @@ public class LaunchServiceProvider extends Entity {
 
     //new
     public BigDecimal getTotalRevenue(int year) {
-        totalRevenue = new BigDecimal(0.00);
+        BigDecimal totalRevenue = new BigDecimal(0.00);
         Set<Rocket> set = getRockets();
         for (Rocket ro :set){
             Set<Launch> set1 =ro.getLaunches();
