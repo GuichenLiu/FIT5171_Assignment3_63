@@ -122,8 +122,22 @@ public class LaunchServiceProvider extends Entity {
 
 
 
-    //new
-    //get total revenue of a particular year
+//    //new
+//    public BigDecimal getTotalRevenue(int year) {
+//        BigDecimal totalRevenue = new BigDecimal(0.00);
+//        Set<Rocket> set = getRockets();
+//        for (Rocket ro :set){
+//            Set<Launch> set1 =ro.getLaunches();
+//            for (Launch st : set1) {
+//                if (st.getLaunchDate().getYear() == year) {
+//                    totalRevenue.add(st.getPrice());
+//                }
+//            }
+//        }
+//        return totalRevenue;
+//    }
+
+    //nam fix
     public BigDecimal getTotalRevenue(int year) {
         BigDecimal totalRevenue = BigDecimal.valueOf(0.00);
         Set<Rocket> set = getRockets();
@@ -131,7 +145,8 @@ public class LaunchServiceProvider extends Entity {
             Set<Launch> set1 =ro.getLaunches();
             for (Launch st : set1) {
                 if (st.getLaunchDate().getYear() == year) {
-                    totalRevenue.add(st.getPrice());
+                    BigDecimal lCost = st.getPrice();
+                    totalRevenue.add(lCost);
                 }
             }
         }
