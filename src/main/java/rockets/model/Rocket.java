@@ -58,7 +58,7 @@ public class Rocket extends Entity {
                    &&onlyCharacter(country)
                 //&&onlyCharacter(manufacturer)
                 &&isInRange(name,30)
-                 &&isInRange(variation,30)
+                 //&&isInRange(variation,30)
                 &&isInRange(country,30)
                 //&&isInRange(manufacturer,30)
          )
