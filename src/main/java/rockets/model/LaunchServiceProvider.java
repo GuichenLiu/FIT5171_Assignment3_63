@@ -2,12 +2,14 @@ package rockets.model;
 
 import com.google.common.collect.Sets;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.apache.commons.lang3.Validate.*;
+import static rockets.model.Launch.LaunchOutcome.SUCCESSFUL;
 
 public class LaunchServiceProvider extends Entity {
     private String name;
@@ -19,6 +21,14 @@ public class LaunchServiceProvider extends Entity {
     private String headquarters;
 
     private Set<Rocket> rockets;
+
+
+
+    //cc new
+    //private Set<Launch> launches;
+    private BigDecimal totalRevenue;
+    private int percentage;
+    private int Dominant;
 
     public boolean onlyCharacter(String input) {
         return input.matches("[a-zA-Z\\s]+");
@@ -77,6 +87,7 @@ public class LaunchServiceProvider extends Entity {
     public Set<Rocket> getRockets() { return rockets; }
 
 
+
     public void setHeadquarters(String headquarters) {
 
         //ADDED
@@ -107,4 +118,69 @@ public class LaunchServiceProvider extends Entity {
     public int hashCode() {
         return Objects.hash(name, yearFounded, country);
     }
+
+
+
+    //new
+    public BigDecimal getTotalRevenue(int year) {
+        BigDecimal totalRevenue = new BigDecimal(  0.00);
+        Set<Rocket> set = getRockets();
+        for (Rocket ro :set){
+            Set<Launch> set1 =ro.getLaunches();
+            for (Launch st : set1) {
+                if (st.getLaunchDate().getYear() == year) {
+                    totalRevenue.add(st.getPrice());
+                }
+            }
+        }
+        return totalRevenue;
+    }
+
+    public int getPercentage() {
+        int succ=0;
+        int size =0;
+        Set<Rocket> set = getRockets();
+        for (Rocket ro :set)
+        {
+            Set<Launch> set1 = ro.getLaunches();
+            size+=set1.size();
+            for (Launch st : set1)
+            {
+                //size+=1;
+                if (st.getLaunchOutcome() == SUCCESSFUL)
+                {
+                    succ += 1;
+                }
+            }
+        }
+
+        if (size>0)
+        {
+            percentage = succ / size;
+        }
+        //System.out.println(percentage);
+        return percentage;
+    }
+
+
+
+    public int getDominant(String orbit) {
+        Set<Rocket> set = getRockets();
+        int Dominant =0;
+        for (Rocket ro :set)
+        {
+            Set<Launch> set1 = ro.getLaunches();
+
+            for (Launch st : set1) {
+                //System.out.println(st.getOrbit());
+                if (st.getOrbit() == orbit) {
+                    Dominant += 1;
+                }
+            }
+        }
+        System.out.println(Dominant);
+        return Dominant;
+    }
+
+
 }
