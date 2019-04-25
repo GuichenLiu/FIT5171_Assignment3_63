@@ -86,7 +86,7 @@ public class RocketMinerUnitTest {
         set4.add(launches.get(4));
 
         Set set5 = new HashSet();
-        set4.add(launches.get(5));
+        set5.add(launches.get(5));
 
         rockets.get(0).setLaunches(set1);
         rockets.get(1).setLaunches(set2);
@@ -95,9 +95,20 @@ public class RocketMinerUnitTest {
         rockets.get(4).setLaunches(set5);
 
 
-        lsps.get(0).setLaunchs(set1);
-        lsps.get(1).setLaunchs(set2);
-        lsps.get(2).setLaunchs(set3);
+        Set set6 = new HashSet();
+        set6.add(rockets.get(0));
+        set6.add(rockets.get(1));
+        set6.add(rockets.get(2));
+
+        Set set7 = new HashSet();
+        set7.add(rockets.get(3));
+        set7.add(rockets.get(4));
+
+
+
+       lsps.get(0).setRockets(set6);
+        lsps.get(1).setRockets(set7);
+     //lsps.get(2).setRockets(set8);
 
     }
 
@@ -146,13 +157,14 @@ public class RocketMinerUnitTest {
         assertEquals(sortedLaunches.subList(0, k), loadedLaunches);
     }
 
-   @Test
+    @Test
     public void shouldReturnDominantCountryOnAOrbit() {
         String orbit="LEO";
         when(dao.loadAll(LaunchServiceProvider.class)).thenReturn(lsps);
         List<LaunchServiceProvider> sortedLaunches = new ArrayList<>(lsps);
         sortedLaunches.sort((a, b) -> -Integer.compare(a.getDominant(orbit), b.getDominant(orbit)));
         String dominate = miner.dominantCountry(orbit);
+        //System.out.println(dominate);
         assertEquals(sortedLaunches.get(0).getName(), dominate);
     }
 
@@ -166,7 +178,7 @@ public class RocketMinerUnitTest {
         when(dao.loadAll(LaunchServiceProvider.class)).thenReturn(lsps);
         List<LaunchServiceProvider> sortedLaunches = new ArrayList<>(lsps);
         sortedLaunches.sort((a, b) -> -a.getTotalRevenue(2017).compareTo(b.getTotalRevenue(2017)));
-        List<LaunchServiceProvider> loadedLaunches = miner.mostReliableLaunchServiceProviders(k);
+        List<LaunchServiceProvider> loadedLaunches = miner.highestRevenueLaunchServiceProviders(k,year);
         assertEquals(k, loadedLaunches.size());
         assertEquals(sortedLaunches.subList(0, k), loadedLaunches);
     }
