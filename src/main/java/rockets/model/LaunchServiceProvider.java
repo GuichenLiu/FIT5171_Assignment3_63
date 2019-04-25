@@ -27,7 +27,7 @@ public class LaunchServiceProvider extends Entity {
 
     //cc new
     //private Set<Launch> launches;
-    private BigDecimal totalRevenue;
+    //private BigDecimal totalRevenue;
     private int percentage;
     private int Dominant;
 
@@ -122,7 +122,22 @@ public class LaunchServiceProvider extends Entity {
 
 
 
-    //new
+//    //new
+//    public BigDecimal getTotalRevenue(int year) {
+//        BigDecimal totalRevenue = new BigDecimal(0.00);
+//        Set<Rocket> set = getRockets();
+//        for (Rocket ro :set){
+//            Set<Launch> set1 =ro.getLaunches();
+//            for (Launch st : set1) {
+//                if (st.getLaunchDate().getYear() == year) {
+//                    totalRevenue.add(st.getPrice());
+//                }
+//            }
+//        }
+//        return totalRevenue;
+//    }
+
+    //nam fix
     public BigDecimal getTotalRevenue(int year) {
         BigDecimal totalRevenue = new BigDecimal(0.00);
         Set<Rocket> set = getRockets();
