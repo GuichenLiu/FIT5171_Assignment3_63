@@ -41,12 +41,12 @@ public class LaunchServiceProvider extends Entity {
 
     public boolean isInRange(String input, int i) {return input.length()<i;}
 
-    public boolean notFutureYear(int year) {
+    public boolean validYear(int year) {
         Date date = new Date();
         String strDateFormat = "yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
         //System.out.println(sdf);
-        if(year<Integer.valueOf(sdf.format(date))) return true;
+        if(year > 1900 && year<Integer.valueOf(sdf.format(date))) return true;
         else return false;
     }
 
@@ -55,7 +55,7 @@ public class LaunchServiceProvider extends Entity {
         if(onlyCharacter(name)
                 && onlyCharacter(country)
                 && isInteger(String.valueOf(yearFounded))
-                && notFutureYear(yearFounded)
+                && validYear(yearFounded)
                 && isInRange(name,30)
                 && isInRange(country, 30)){
             this.name = name;
@@ -138,19 +138,20 @@ public class LaunchServiceProvider extends Entity {
 //    }
 
     //nam fix
+    // to find out the total revenue of a selected year
     public BigDecimal getTotalRevenue(int year) {
-        BigDecimal totalRevenue = BigDecimal.valueOf(0.00);
+        BigDecimal totalRevenueOfYearXXXX = BigDecimal.valueOf(0.00);
         Set<Rocket> set = getRockets();
         for (Rocket ro :set){
             Set<Launch> set1 =ro.getLaunches();
             for (Launch st : set1) {
                 if (st.getLaunchDate().getYear() == year) {
                     BigDecimal lCost = st.getPrice();
-                    totalRevenue.add(lCost);
+                    totalRevenueOfYearXXXX.add(lCost);
                 }
             }
         }
-        return totalRevenue;
+        return totalRevenueOfYearXXXX;
     }
 
 
