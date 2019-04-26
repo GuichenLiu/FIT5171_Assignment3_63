@@ -112,7 +112,7 @@ public class RocketMiner {
     public List<LaunchServiceProvider> highestRevenueLaunchServiceProviders(int k, int year) {
         logger.info("find most Expensive " + k + " launches");
         Collection<LaunchServiceProvider> launches = dao.loadAll(LaunchServiceProvider.class);
-        Comparator<LaunchServiceProvider> launchExpensiveComparator = (a, b) -> -a.getTotalRevenueOfYear(year).compareTo(b.getTotalRevenueOfYear(year));
+        Comparator<LaunchServiceProvider> launchExpensiveComparator = (a, b) -> -a.getTotalRevenue(year).compareTo(b.getTotalRevenue(year));
         return launches.stream().sorted(launchExpensiveComparator).limit(k).collect(Collectors.toList());
 
     }
