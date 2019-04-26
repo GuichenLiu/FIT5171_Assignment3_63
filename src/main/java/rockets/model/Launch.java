@@ -1,5 +1,7 @@
 package rockets.model;
 
+//mport com.sun.xml.internal.org.jvnet.staxex.StAxSOAPBody;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -16,7 +18,8 @@ public class Launch extends Entity {
 
     private LaunchServiceProvider launchServiceProvider;
 
-    private Set<String> payload;
+    //private Set<String> payload;
+    private Set<PayLoad> payload;
 
     private String launchSite;
 
@@ -52,12 +55,13 @@ public class Launch extends Entity {
         this.launchServiceProvider = launchServiceProvider;
     }
 
-    public Set<String> getPayload() {
+    //public Set<String> getPayload() {return payload;}
+    public Set<PayLoad> getPayload() {
         return payload;
     }
 
-    public void setPayload(Set<String> payload) {
-
+    //public void setPayload(Set<String> payload) {this.payload = payload;}
+    public void setPayload(Set<PayLoad> payload) {
         this.payload = payload;
     }
 

@@ -5,8 +5,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,9 +25,9 @@ public class RocketUnitTest {
     public void shouldConstructRocketObject() {
         String name = "BFR";
         String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider  manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name, variation,country,manufacturer);
+        String variation = "ccc";
+        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
+        Rocket bfr = new Rocket(name,variation, country, manufacturer);
         assertNotNull(bfr);
     }
 
@@ -36,8 +36,8 @@ public class RocketUnitTest {
     public void shouldThrowExceptionWhenNoManufacturerGiven() {
         String name = "BFR";
         String country = "USA";
-        String variation ="ccc";
-        assertThrows(NullPointerException.class, () -> new Rocket(name, variation, country, null));
+        String variation = "ccc";
+        assertThrows(NullPointerException.class, () -> new Rocket(name,variation, country,null));
     }
 
     @DisplayName("should set rocket massToLEO value")
@@ -45,10 +45,9 @@ public class RocketUnitTest {
     public void shouldSetMassToLEOWhenGivenCorrectValue(String massToLEO) {
         String name = "BFR";
         String country = "USA";
-        String variation ="ccc";
+        String variation = "ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-
-        Rocket bfr = new Rocket(name,variation, country, manufacturer);
+        Rocket bfr = new Rocket(name, variation, country, manufacturer);
 
         bfr.setMassToLEO(massToLEO);
         assertEquals(massToLEO, bfr.getMassToLEO());
@@ -59,9 +58,9 @@ public class RocketUnitTest {
     public void shouldThrowExceptionWhenSetMassToLEOToNull() {
         String name = "BFR";
         String country = "USA";
-        String variation ="ccc";
+        String variation = "ccc";
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name, variation, country,manufacturer);
+        Rocket bfr = new Rocket(name,variation, country, manufacturer);
         assertThrows(NullPointerException.class, () -> bfr.setMassToLEO(null));
     }
 
@@ -188,5 +187,7 @@ public class RocketUnitTest {
         bfr.setMassToOther("600.12");
         assertEquals("600.12",bfr.getMassToOther());
     }
+
+
 
 }

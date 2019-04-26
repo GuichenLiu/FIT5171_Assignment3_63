@@ -1,7 +1,6 @@
 package rockets.model;
 
 import java.util.Objects;
-import java.util.Set;
 
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
@@ -9,11 +8,11 @@ import static org.apache.commons.lang3.Validate.notNull;
 public class Rocket extends Entity {
 
 
-    private Set<PayLoad> payloads;
     private String name;
     private String variation;
     private String country;
 
+    //private String manufacturer;
     private LaunchServiceProvider manufacturer;
 
     private String massToLEO;
@@ -22,24 +21,7 @@ public class Rocket extends Entity {
 
     private String massToOther;
 
-    public Set<PayLoad> getPayloads() {
-        return payloads;
-    }
 
-    public void setPayloads(Set<PayLoad> payloads) {
-        this.payloads = payloads;
-    }
-
-    // cc new
-    private Set<Launch> launches;
-
-    public Set<Launch> getLaunches() {
-        return launches;
-    }
-
-    public void setLaunches(Set<Launch> launches) {
-        this.launches = launches;
-    }
 
     /**
      * All parameters shouldn't be null.
@@ -48,20 +30,20 @@ public class Rocket extends Entity {
      * @param country
      * @param manufacturer
      */
-    public Rocket(String name,String variation, String country,LaunchServiceProvider  manufacturer) {
+    public Rocket(String name,String variation,String country, LaunchServiceProvider manufacturer) {
         notNull(name);
+        //notNull(variation);
         notNull(country);
         notNull(manufacturer);
-     //
+        //
         if(
-                haveCharaters(name)
-                   &&onlyCharacter(country)
-                //&&onlyCharacter(manufacturer)
-                &&isInRange(name,30)
-                 //&&isInRange(variation,30)
-                &&isInRange(country,30)
-                //&&isInRange(manufacturer,30)
-         )
+                haveCharacters(name)
+                        &&onlyCharacter(country)
+                        //&&onlyCharacter(manufacturer)
+                        &&isInRange(name,0,30)
+                        //&&isInRange(variation,30)
+                        &&isInRange(country,0,30))
+                        //&&isInRange(manufacturer,0,30))
         {
             this.name = name;
             this.variation = variation;
@@ -71,23 +53,17 @@ public class Rocket extends Entity {
         else {
             throw new IllegalArgumentException("\"name should under 30 characters\\n and contains alphabetic characters\" +\n" +
                     "                    \" variation should under 30 characters\"+\n" +
-                    "                    \" country should under 30 characters, contain only alphabetic characters \"+\n" +
-                    "                    \"manufacturer should under 30 characters, contain only alphabetic characters\"");
+                    "                    \" country should under 30 characters, contain only alphabetic characters \"+\n");
         }
     }
 
-    public boolean haveCharaters(String name) {
+    public boolean haveCharacters(String name) {
         return name.matches(".*[a-zA-z].*");
 
     }
 
 
-
-
-
-    public boolean isInRange(String input, int i) {
-        return input.length()<=i;
-    }
+    public boolean isInRange(String input, int i, int j) {return input.length()>i && input.length()<j;}
 
     public boolean onlyCharacter(String input) {
         return input.matches("[a-zA-Z]+");
@@ -110,9 +86,7 @@ public class Rocket extends Entity {
         return country;
     }
 
-
     public LaunchServiceProvider getManufacturer() {
-
         return manufacturer;
     }
 

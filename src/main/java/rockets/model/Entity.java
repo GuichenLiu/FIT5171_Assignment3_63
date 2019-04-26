@@ -1,7 +1,5 @@
 package rockets.model;
 
-//Master Copy
-
 public abstract class Entity {
     private Long id;
 

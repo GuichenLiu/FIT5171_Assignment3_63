@@ -91,5 +91,4 @@ class LaunchServiceProviderUnitTest {
         NullPointerException exception = assertThrows(NullPointerException.class, () -> target.setRockets(null));
         assertEquals("rockets cannot be null or empty", exception.getMessage());
     }
-
 }

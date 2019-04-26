@@ -7,7 +7,7 @@ import java.util.Set;
 
 import static org.apache.commons.lang3.Validate.notNull;
 
-public class RocketFamily extends Entity{
+public class RocketFamily {
     private String name;
 
     private Set<Rocket> rockets;

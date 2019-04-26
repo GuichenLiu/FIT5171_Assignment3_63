@@ -30,11 +30,7 @@ public class RocketMiner {
      * @return the list of k most active rockets.
      */
     public List<Rocket> mostLaunchedRockets(int k) {
-       logger.info("find most launched " + k + " rockets");
-     Collection<Rocket> rockets = dao.loadAll(Rocket.class);
-     Comparator<Rocket> mostLaunchedComparator = (a, b) -> -Integer.compare(a.getLaunches().size(), b.getLaunches().size());
-      return rockets.stream().sorted(mostLaunchedComparator).limit(k).collect(Collectors.toList());
-
+        return null;
     }
 
     /**
@@ -47,14 +43,10 @@ public class RocketMiner {
      * @return the list of k most reliable ones.
      */
     public List<LaunchServiceProvider> mostReliableLaunchServiceProviders(int k) {
-
-        Collection<LaunchServiceProvider> launches = dao.loadAll(LaunchServiceProvider.class);
-        Comparator<LaunchServiceProvider> ReliableComparator = (a, b) -> -Integer.compare(a.getPercentage(),b.getPercentage());
-        return launches.stream().sorted(ReliableComparator).limit(k).collect(Collectors.toList());
-
+        return null;
     }
 
-    /** ERROR
+    /**
      * <p>
      * Returns the top-k most recent launches.
      *
@@ -64,9 +56,8 @@ public class RocketMiner {
     public List<Launch> mostRecentLaunches(int k) {
         logger.info("find most recent " + k + " launches");
         Collection<Launch> launches = dao.loadAll(Launch.class);
-        Comparator<Launch> mostRecentComparator = (a, b) -> -a.getLaunchDate().compareTo(b.getLaunchDate());
-        return launches.stream().sorted(mostRecentComparator).limit(k).collect(Collectors.toList());
-
+        Comparator<Launch> launchDateComparator = (a, b) -> -a.getLaunchDate().compareTo(b.getLaunchDate());
+        return launches.stream().sorted(launchDateComparator).limit(k).collect(Collectors.toList());
     }
 
     /**
@@ -77,43 +68,31 @@ public class RocketMiner {
      * @param orbit the orbit
      * @return the country who sends the most payload to the orbit
      */
-    public String dominantCountry(String orbit) {
-        Collection<LaunchServiceProvider> launches = dao.loadAll(LaunchServiceProvider.class);
-        Comparator<LaunchServiceProvider> ReliableComparator = (a, b) -> -Integer.compare(a.getDominant(orbit), b.getDominant(orbit));
-        return launches.stream().sorted(ReliableComparator).limit(1).collect(Collectors.toList()).get(0).getName();
+    public String dominantCountry(String orbit) { return null;}
 
+    /**
+     * TODO: to be implemented & tested!
+     * <p>
+     * Returns the top-k most expensive launches.
+     *
+     * @param k the number of launches to be returned.
+     * @return the list of k most expensive launches.
+     */
+    public List<Launch> mostExpensiveLaunches(int k) {
+        return null;
     }
 
-//    /** ERROR
-//     * TODO: to be implemented & tested!
-//     * <p>
-//     * Returns the top-k most expensive launches.
-//     *
-//     * @param k the number of launches to be returned.
-//     * @return the list of k most expensive launches.
-//     */
-//    public List<Launch> mostExpensiveLaunches(int k) {
-//        logger.info("find most Expensive " + k + " launches");
-//        Collection<Launch> launches = dao.loadAll(Launch.class);
-//        Comparator<Launch> launchExpensiveComparator = (a, b) -> -a.getPrice().compareTo(b.getPrice());
-//        return launches.stream().sorted(launchExpensiveComparator).limit(k).collect(Collectors.toList());
-//    }
-//
-//    /** ERROR
-//     * TODO: to be implemented & tested!
-//     * <p>
-//     * Returns a list of launch service provider that has the top-k highest
-//     * sales revenue in a year.
-//     *
-//     * @param k the number of launch service provider.
-//     * @param year the year in request
-//     * @return the list of k launch service providers who has the highest sales revenue.
-//     */
-//    public List<LaunchServiceProvider> highestRevenueLaunchServiceProviders(int k, int year) {
-//        logger.info("find most Expensive " + k + " launches");
-//        Collection<LaunchServiceProvider> launches = dao.loadAll(LaunchServiceProvider.class);
-//        Comparator<LaunchServiceProvider> launchExpensiveComparator = (a, b) -> -a.getTotalRevenueOfYear(year).compareTo(b.getTotalRevenueOfYear(year));
-//        return launches.stream().sorted(launchExpensiveComparator).limit(k).collect(Collectors.toList());
-//
-//    }
+    /**
+     * TODO: to be implemented & tested!
+     * <p>
+     * Returns a list of launch service provider that has the top-k highest
+     * sales revenue in a year.
+     *
+     * @param k the number of launch service provider.
+     * @param year the year in request
+     * @return the list of k launch service providers who has the highest sales revenue.
+     */
+    public List<LaunchServiceProvider> highestRevenueLaunchServiceProviders(int k, int year) {
+        return null;
+    }
 }
