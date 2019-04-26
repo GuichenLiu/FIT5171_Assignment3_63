@@ -172,12 +172,12 @@ public class RocketMinerUnitTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
 
-    public void shouldReturnhighestRevenueLaunchServiceProviders(int k) {
+    public void shouldReturnHighestRevenueLaunchServiceProviders(int k) {
 
         int year= 2017;
         when(dao.loadAll(LaunchServiceProvider.class)).thenReturn(lsps);
         List<LaunchServiceProvider> sortedLaunches = new ArrayList<>(lsps);
-        sortedLaunches.sort((a, b) -> -a.getTotalRevenue(2017).compareTo(b.getTotalRevenue(2017)));
+        sortedLaunches.sort((a, b) -> -a.getTotalRevenueOfYear(2017).compareTo(b.getTotalRevenueOfYear(2017)));
         List<LaunchServiceProvider> loadedLaunches = miner.highestRevenueLaunchServiceProviders(k,year);
         assertEquals(k, loadedLaunches.size());
         assertEquals(sortedLaunches.subList(0, k), loadedLaunches);
