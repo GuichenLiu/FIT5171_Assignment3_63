@@ -139,7 +139,7 @@ public class LaunchServiceProvider extends Entity {
 
     //nam fix
     // to find out the total revenue of a selected year
-    public BigDecimal getTotalRevenue(int year) {
+    public BigDecimal getTotalRevenueOfYear(int year) {
         BigDecimal totalRevenueOfYearXXXX = BigDecimal.valueOf(0.00);
         Set<Rocket> set = getRockets();
         for (Rocket ro :set){
