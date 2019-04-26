@@ -146,8 +146,11 @@ public class LaunchServiceProvider extends Entity {
             Set<Launch> set1 =ro.getLaunches();
             for (Launch st : set1) {
                 if (st.getLaunchDate().getYear() == year) {
-                    BigDecimal lCost = st.getPrice();
-                    totalRevenueOfYearXXXX = totalRevenueOfYearXXXX.add(lCost);
+//                    BigDecimal lCost = st.getPrice();
+//                    totalRevenueOfYearXXXX = totalRevenueOfYearXXXX.add(lCost);
+                    if(st.getPrice().compareTo(BigDecimal.ZERO)>0){
+                    totalRevenueOfYearXXXX = totalRevenueOfYearXXXX.add(st.getPrice());
+                    }
                 }
             }
         }
