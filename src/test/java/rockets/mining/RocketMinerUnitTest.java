@@ -135,16 +135,16 @@ public class RocketMinerUnitTest {
     }
 
 
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
-    public void shouldReturnTopMostExpensiveLaunches(int k) {
-        when(dao.loadAll(Launch.class)).thenReturn(launches);
-        List<Launch> sortedLaunches = new ArrayList<>(launches);
-        sortedLaunches.sort((a, b) -> -a.getPrice().compareTo(b.getPrice()));
-        List<Launch> loadedLaunches = miner.mostExpensiveLaunches(k);
-        assertEquals(k, loadedLaunches.size());
-        assertEquals(sortedLaunches.subList(0, k), loadedLaunches);
-    }
+//    @ParameterizedTest
+//    @ValueSource(ints = {1, 2, 3})
+//    public void shouldReturnTopMostExpensiveLaunches(int k) {
+//        when(dao.loadAll(Launch.class)).thenReturn(launches);
+//        List<Launch> sortedLaunches = new ArrayList<>(launches);
+//        sortedLaunches.sort((a, b) -> -a.getPrice().compareTo(b.getPrice()));
+//        List<Launch> loadedLaunches = miner.mostExpensiveLaunches(k);
+//        assertEquals(k, loadedLaunches.size());
+//        assertEquals(sortedLaunches.subList(0, k), loadedLaunches);
+//    }
 
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
@@ -169,17 +169,17 @@ public class RocketMinerUnitTest {
     }
 
 
-    @ParameterizedTest
-    @ValueSource(ints = {1,2,3})
-
-    public void shouldReturnHighestRevenueLaunchServiceProviders(int k) {
-
-        int year= 2017;
-        when(dao.loadAll(LaunchServiceProvider.class)).thenReturn(lsps);
-        List<LaunchServiceProvider> sortedLaunches = new ArrayList<>(lsps);
-        sortedLaunches.sort((a, b) -> -a.getTotalRevenueOfYear(2017).compareTo(b.getTotalRevenueOfYear(2017)));
-        List<LaunchServiceProvider> loadedLaunches = miner.highestRevenueLaunchServiceProviders(k,year);
-        assertEquals(k, loadedLaunches.size());
-        assertEquals(sortedLaunches.subList(0, k), loadedLaunches);
-    }
+//    @ParameterizedTest
+//    @ValueSource(ints = {1,2,3})
+//
+//    public void shouldReturnHighestRevenueLaunchServiceProviders(int k) {
+//
+//        int year= 2017;
+//        when(dao.loadAll(LaunchServiceProvider.class)).thenReturn(lsps);
+//        List<LaunchServiceProvider> sortedLaunches = new ArrayList<>(lsps);
+//        sortedLaunches.sort((a, b) -> -a.getTotalRevenueOfYear(2017).compareTo(b.getTotalRevenueOfYear(2017)));
+//        List<LaunchServiceProvider> loadedLaunches = miner.highestRevenueLaunchServiceProviders(k,year);
+//        assertEquals(k, loadedLaunches.size());
+//        assertEquals(sortedLaunches.subList(0, k), loadedLaunches);
+//    }
 }

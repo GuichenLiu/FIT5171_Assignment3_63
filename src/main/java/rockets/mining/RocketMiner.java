@@ -54,7 +54,7 @@ public class RocketMiner {
 
     }
 
-    /**
+    /** ERROR
      * <p>
      * Returns the top-k most recent launches.
      *
@@ -84,36 +84,36 @@ public class RocketMiner {
 
     }
 
-    /**
-     * TODO: to be implemented & tested!
-     * <p>
-     * Returns the top-k most expensive launches.
-     *
-     * @param k the number of launches to be returned.
-     * @return the list of k most expensive launches.
-     */
-    public List<Launch> mostExpensiveLaunches(int k) {
-        logger.info("find most Expensive " + k + " launches");
-        Collection<Launch> launches = dao.loadAll(Launch.class);
-        Comparator<Launch> launchExpensiveComparator = (a, b) -> -a.getPrice().compareTo(b.getPrice());
-        return launches.stream().sorted(launchExpensiveComparator).limit(k).collect(Collectors.toList());
-    }
-
-    /**
-     * TODO: to be implemented & tested!
-     * <p>
-     * Returns a list of launch service provider that has the top-k highest
-     * sales revenue in a year.
-     *
-     * @param k the number of launch service provider.
-     * @param year the year in request
-     * @return the list of k launch service providers who has the highest sales revenue.
-     */
-    public List<LaunchServiceProvider> highestRevenueLaunchServiceProviders(int k, int year) {
-        logger.info("find most Expensive " + k + " launches");
-        Collection<LaunchServiceProvider> launches = dao.loadAll(LaunchServiceProvider.class);
-        Comparator<LaunchServiceProvider> launchExpensiveComparator = (a, b) -> -a.getTotalRevenueOfYear(year).compareTo(b.getTotalRevenueOfYear(year));
-        return launches.stream().sorted(launchExpensiveComparator).limit(k).collect(Collectors.toList());
-
-    }
+//    /** ERROR
+//     * TODO: to be implemented & tested!
+//     * <p>
+//     * Returns the top-k most expensive launches.
+//     *
+//     * @param k the number of launches to be returned.
+//     * @return the list of k most expensive launches.
+//     */
+//    public List<Launch> mostExpensiveLaunches(int k) {
+//        logger.info("find most Expensive " + k + " launches");
+//        Collection<Launch> launches = dao.loadAll(Launch.class);
+//        Comparator<Launch> launchExpensiveComparator = (a, b) -> -a.getPrice().compareTo(b.getPrice());
+//        return launches.stream().sorted(launchExpensiveComparator).limit(k).collect(Collectors.toList());
+//    }
+//
+//    /** ERROR
+//     * TODO: to be implemented & tested!
+//     * <p>
+//     * Returns a list of launch service provider that has the top-k highest
+//     * sales revenue in a year.
+//     *
+//     * @param k the number of launch service provider.
+//     * @param year the year in request
+//     * @return the list of k launch service providers who has the highest sales revenue.
+//     */
+//    public List<LaunchServiceProvider> highestRevenueLaunchServiceProviders(int k, int year) {
+//        logger.info("find most Expensive " + k + " launches");
+//        Collection<LaunchServiceProvider> launches = dao.loadAll(LaunchServiceProvider.class);
+//        Comparator<LaunchServiceProvider> launchExpensiveComparator = (a, b) -> -a.getTotalRevenueOfYear(year).compareTo(b.getTotalRevenueOfYear(year));
+//        return launches.stream().sorted(launchExpensiveComparator).limit(k).collect(Collectors.toList());
+//
+//    }
 }
