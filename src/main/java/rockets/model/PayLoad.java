@@ -15,7 +15,7 @@ public class PayLoad {
     //weight of payload
     private String mass;
 
-    private String manufacturer;
+    private LaunchServiceProvider manufacturer;
 
     public boolean onlyCharacter(String input) {
         return input.matches("[a-zA-Z\\s]+");
@@ -25,19 +25,19 @@ public class PayLoad {
 
     public boolean isInRange(String input, int i, int j) {return input.length()>i && input.length()<j;}
 
-    public PayLoad(String type, String name, String manufacturer) {
+    public PayLoad(String type, String name, LaunchServiceProvider manufacturer) {
         if(onlyCharacter(type)
                 &&onlyCharacterAndNumber(name)
-                &&onlyCharacter(manufacturer)
+                //&&onlyCharacter(manufacturer)
                 &&isInRange(type,0,30)
                 &&isInRange(name,0,30)
-                &&isInRange(manufacturer,0,100)
+                //&&isInRange(manufacturer,0,100)
         ){
             this.type = type;
             this.name = name;
             this.manufacturer = manufacturer;
         }
-        else throw new IllegalArgumentException("Type and Manufacturer conctain only alphabetic, Name contain only alphanumeric, all are under 30 characters");
+        else throw new IllegalArgumentException("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters");
     }
 
     public String getType(){return type;}
@@ -46,7 +46,7 @@ public class PayLoad {
 
     public String getMass(){return mass; }
 
-    public String getManufacturer(){return manufacturer;}
+    public LaunchServiceProvider getManufacturer(){return manufacturer;}
 
     public boolean isDoubleOrInteger(String input) {
 

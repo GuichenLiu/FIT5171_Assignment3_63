@@ -18,7 +18,8 @@ class PayLoadUnitTest {
         String type = "Satellite";
         String name = "Sputnik I";
         String mass = "83.6 kg";
-        String manufacturer = "Ministry of Radiotechnical Industry";
+        //String manufacturer = "Ministry of Radiotechnical Industry";
+        LaunchServiceProvider  manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
         target = new PayLoad(type,name,manufacturer);
     }
 
@@ -28,7 +29,8 @@ class PayLoadUnitTest {
         String type = "Satellite";
         String name = "Vanguard 1";
         String mass = "1.47 kg";
-        String manufacturer = "Naval Research Laboratory";
+        //String manufacturer = "Naval Research Laboratory";
+        LaunchServiceProvider  manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
         target = new PayLoad(type,name,manufacturer);
         assertTrue(type.equals(target.getType()));
         assertTrue(name.equals(target.getName()));
@@ -39,17 +41,19 @@ class PayLoadUnitTest {
     @DisplayName("should throw exception when pass the invalid parameters for constructor")
     @Test
     public void shouldThrowExceptionWhenPassInvalidInputToConstructor(){
+        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
+
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()
-                -> new PayLoad("111","Vanguard 1", "Naval Research Laboratory"));
-        assertEquals("Type and Manufacturer conctain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
+                -> new PayLoad("111","Vanguard 1", manufacturer));
+        assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
 
         IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, ()
-                -> new PayLoad("Satellite","Vanguard 1!!!", "Naval Research Laboratory"));
-        assertEquals("Type and Manufacturer conctain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
+                -> new PayLoad("Satellite","Vanguard 1!!!", manufacturer));
+        assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
 
         IllegalArgumentException exception3 = assertThrows(IllegalArgumentException.class, ()
-                -> new PayLoad("Satellite","Vanguard 1", "Naval Research Laboratory!!!"));
-        assertEquals("Type and Manufacturer conctain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
+                -> new PayLoad("Satellite","Vanguard 1", manufacturer));
+        assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
     }
 
     @DisplayName("should throw exception when pass empty weight and unit to setMass function")

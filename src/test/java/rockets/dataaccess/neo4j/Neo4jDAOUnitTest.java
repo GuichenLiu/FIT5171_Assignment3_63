@@ -46,7 +46,6 @@ public class Neo4jDAOUnitTest {
         spacex = new LaunchServiceProvider("SpaceX", 2002, "USA");
         rocket = new Rocket("F9", "Block 5","USA", spacex);
     }
-
     @Test
     public void shouldCreateNeo4jDAOSuccessfully() {
         assertNotNull(dao);

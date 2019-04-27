@@ -18,7 +18,7 @@ public class Launch extends Entity {
 
     private LaunchServiceProvider launchServiceProvider;
 
-    private Set<String> payload;
+    private Set<PayLoad> payload;
 
     private String launchSite;
 
@@ -54,14 +54,11 @@ public class Launch extends Entity {
         this.launchServiceProvider = launchServiceProvider;
     }
 
-    public Set<String> getPayload() {
+    public Set<PayLoad> getPayload() {
         return payload;
     }
 
-    public void setPayload(Set<String> payload) {
-
-        this.payload = payload;
-    }
+    public void setPayload(Set<PayLoad> payload) {this.payload = payload; }
 
     public String getLaunchSite() {
         return launchSite;
@@ -87,16 +84,9 @@ public class Launch extends Entity {
         this.function = function;
     }
 
-    public BigDecimal getPrice() {
+    public BigDecimal getPrice() { return price; }
 
-
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-
-        this.price = price;
-    }
+    public void setPrice(BigDecimal price) { this.price = price; }
 
     public LaunchOutcome getLaunchOutcome() {
         return launchOutcome;
