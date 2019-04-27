@@ -23,7 +23,7 @@ class LaunchServiceProviderUnitTest {
     @BeforeEach
     public void setUp() {
         String name = "AAA";
-        int yearFound = 0;
+        int yearFound = 1942;
         String country = "Australia";
         target = new LaunchServiceProvider(name, yearFound, country);
     }

@@ -14,20 +14,19 @@ public class RocketFamily {
 
     public RocketFamily(String name) {
 
-        if (onlyCharacter(name) && isInRange(name,20) ) {
+        if (onlyCharacter(name) && isInRange(name,0,20) ) {
             this.name = name;
 
-            rockets = Sets.newLinkedHashSet();// new}
+            //new
+            rockets = Sets.newLinkedHashSet();
         }
         else {
             throw new IllegalArgumentException("Rocket family name should only contains alphabetic characters and  under 20 characters");
         }
     }
 
-    public boolean isInRange(String input, int i) {
+    public boolean isInRange(String input, int i, int j) {return input.length()>i && input.length()<j;}
 
-        return input.length()<=i;
-    }
 
     public boolean onlyCharacter(String name) {
         return name.matches("[a-zA-Z]+");

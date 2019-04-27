@@ -23,15 +23,15 @@ public class PayLoad {
 
     public boolean onlyCharacterAndNumber(String input) {return input.matches("[a-zA-Z0-9\\s]+"); }
 
-    public boolean isInRange(String input, int i) {return input.length()<i;}
+    public boolean isInRange(String input, int i, int j) {return input.length()>i && input.length()<j;}
 
     public PayLoad(String type, String name, String manufacturer) {
         if(onlyCharacter(type)
                 &&onlyCharacterAndNumber(name)
                 &&onlyCharacter(manufacturer)
-                &&isInRange(type,30)
-                &&isInRange(name,30)
-                &&isInRange(manufacturer,100)
+                &&isInRange(type,0,30)
+                &&isInRange(name,0,30)
+                &&isInRange(manufacturer,0,100)
         ){
             this.type = type;
             this.name = name;

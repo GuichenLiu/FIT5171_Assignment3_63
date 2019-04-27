@@ -57,9 +57,9 @@ public class Rocket extends Entity {
                 haveCharaters(name)
                         &&onlyCharacter(country)
                         //&&onlyCharacter(manufacturer)
-                        &&isInRange(name,30)
-                        &&isInRange(variation,30)
-                        &&isInRange(country,30)
+                        &&isInRange(name,0,30)
+                        &&isInRange(variation,0,30)
+                        &&isInRange(country,0,30)
             //&&isInRange(manufacturer,30)
         )
         {
@@ -85,9 +85,7 @@ public class Rocket extends Entity {
 
 
 
-    public boolean isInRange(String input, int i) {
-        return input.length()<=i;
-    }
+    public boolean isInRange(String input, int i, int j) {return input.length()>i && input.length()<j;}
 
     public boolean onlyCharacter(String input) {
         return input.matches("[a-zA-Z]+");
