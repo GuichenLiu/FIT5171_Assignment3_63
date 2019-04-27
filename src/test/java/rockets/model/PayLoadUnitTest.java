@@ -44,11 +44,11 @@ class PayLoadUnitTest {
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()
                 -> new PayLoad("111", "Vanguard 1", manufacturer));
-        assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
+        assertEquals("Type contain only alphabetic, Name under 30 characters & contain only alphanumeric", exception.getMessage());
 
         IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, ()
                 -> new PayLoad("Satellite", "Vanguard 1!!!", manufacturer));
-        assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
+        assertEquals("Type contain only alphabetic, Name under 30 characters & contain only alphanumeric", exception.getMessage());
 }
 
     @DisplayName("should throw exception when pass empty weight and unit to setMass function")

@@ -40,12 +40,7 @@ public class PayLoad {
             this.name = name;
             this.manufacturer = manufacturer;
         }
-       // else throw new IllegalArgumentException("Type contain only alphabetic, Name contain only alphanumeric, all are under 30 characters");
-        else {
-            throw new IllegalArgumentException("\"name contain only alphanumeric\" +\n" +
-                    "                    \" type contain only alphabetic\"+\n" +
-                    "                       \" manufacturer should not be null \"+\n" );
-        }
+       else throw new IllegalArgumentException("Type contain only alphabetic, Name under 30 characters & contain only alphanumeric");
 
     }
 
