@@ -39,6 +39,20 @@ public class UserUnitTest {
         assertEquals("password cannot be null or empty", exception.getMessage());
     }
 
+    @DisplayName("should throw exceptions when pass a null first name to setFirstName function")
+    @Test
+    public void shouldThrowExceptionWhenSetFirstNameToNull() {
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> target.setFirstName(null));
+        assertEquals("first name cannot be null or empty", exception.getMessage());
+    }
+
+    @DisplayName("should throw exceptions when pass a null last name to setFirstName function")
+    @Test
+    public void shouldThrowExceptionWhenSetLastNameToNull() {
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> target.setLastName(null));
+        assertEquals("last name cannot be null or empty", exception.getMessage());
+    }
+
     @DisplayName("should return true when two users have the same email")
     @Test
     public void shouldReturnTrueWhenUsersHaveSameEmail() {
