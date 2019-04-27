@@ -47,6 +47,10 @@ class LaunchServiceProviderUnitTest {
                 -> new LaunchServiceProvider("SpaceXSpaceXSpaceXSpaceXSpaceX",2002,"America"));
         assertEquals("Year must be an integer, name and country must only contain character, less than 30 in length", exception.getMessage());
 
+        IllegalArgumentException exception3 = assertThrows(IllegalArgumentException.class, ()
+                -> new LaunchServiceProvider("",2002,"America"));
+        assertEquals("Year must be an integer, name and country must only contain character, less than 30 in length", exception.getMessage());
+
         IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, ()
                 -> new LaunchServiceProvider("SpaceX",2020,"America"));
         assertEquals("Year must be an integer, name and country must only contain character, less than 30 in length", exception.getMessage());
