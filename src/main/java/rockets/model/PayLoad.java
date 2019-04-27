@@ -26,6 +26,9 @@ public class PayLoad {
     public boolean isInRange(String input, int i, int j) {return input.length()>i && input.length()<j;}
 
     public PayLoad(String type, String name, LaunchServiceProvider manufacturer) {
+        notNull(type);
+        notNull(name);
+        notNull(manufacturer);
         if(onlyCharacter(type)
                 &&onlyCharacterAndNumber(name)
                 //&&onlyCharacter(manufacturer)
@@ -37,7 +40,13 @@ public class PayLoad {
             this.name = name;
             this.manufacturer = manufacturer;
         }
-        else throw new IllegalArgumentException("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters");
+       // else throw new IllegalArgumentException("Type contain only alphabetic, Name contain only alphanumeric, all are under 30 characters");
+        else {
+            throw new IllegalArgumentException("\"name contain only alphanumeric\" +\n" +
+                    "                    \" type contain only alphabetic\"+\n" +
+                    "                       \" manufacturer should not be null \"+\n" );
+        }
+
     }
 
     public String getType(){return type;}

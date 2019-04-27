@@ -71,8 +71,8 @@ public class Rocket extends Entity {
         else {
             throw new IllegalArgumentException("\"name should under 30 characters\\n and contains alphabetic characters\" +\n" +
                     "                    \" variation should under 30 characters\"+\n" +
-                    "                    \" country should under 30 characters, contain only alphabetic characters \"+\n" +
-                    "                    \"manufacturer should under 30 characters, contain only alphabetic characters\"");
+                    "                       \" manufacturer should not be null \"+\n" +
+                    "                    \" country should under 30 characters, contain only alphabetic characters \"+\n");
         }
     }
 

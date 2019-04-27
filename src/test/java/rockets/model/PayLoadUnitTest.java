@@ -18,54 +18,38 @@ class PayLoadUnitTest {
     }
 
 
-//    @DisplayName("should create payload successfully when given right parameters to constructor")
-//    @Test
-//    public void shouldConstructRocketObject() {
-//        String type = "Satellite";
-//        String name = "Vanguard 1";
-//        String mass = "1.47 kg";
-//        LaunchServiceProvider  manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-//        Rocket bfr = new Rocket(name,variation,country,manufacturer);
-//        assertNotNull(bfr);
-//    }
-
     @DisplayName("should return true when pass the valid parameters for constructor")
     @Test
     public void shouldReturnTrueWhenPassValidInputToConstructor() {
         String type = "satellite";
         String name = "sputnik 1";
-        LaunchServiceProvider  manufacturer = new LaunchServiceProvider("OKB", 1957, "Russia");
-        PayLoad payload = new PayLoad(type,name,manufacturer);
+        LaunchServiceProvider manufacturer = new LaunchServiceProvider("OKB", 1957, "Russia");
+        PayLoad payload = new PayLoad(type, name, manufacturer);
         assertNotNull(payload);
     }
 
     @DisplayName("should throw exception when given null manufacturer to constructor")
     @Test
     public void shouldThrowExceptionWhenNoManufacturerGiven() {
-        String type = "Satellite";
-        String name = "Vanguard 1";
-        //String mass = "1.47 kg";
+        String type = "satellite";
+        String name = "sputnik 1";
         assertThrows(NullPointerException.class, () -> new PayLoad(type, name, null));
     }
 
 
     @DisplayName("should throw exception when pass the invalid parameters for constructor")
     @Test
-    public void shouldThrowExceptionWhenPassInvalidInputToConstructor(){
+    public void shouldThrowExceptionWhenPassInvalidInputToConstructor() {
         LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()
-                -> new PayLoad("111","Vanguard 1", manufacturer));
+                -> new PayLoad("111", "Vanguard 1", manufacturer));
         assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
 
         IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, ()
-                -> new PayLoad("Satellite","Vanguard 1!!!", manufacturer));
+                -> new PayLoad("Satellite", "Vanguard 1!!!", manufacturer));
         assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
-
-        IllegalArgumentException exception3 = assertThrows(IllegalArgumentException.class, ()
-                -> new PayLoad("Satellite","Vanguard 1", manufacturer));
-        assertEquals("Type and Manufacturer contain only alphabetic, Name contain only alphanumeric, all are under 30 characters", exception.getMessage());
-    }
+}
 
     @DisplayName("should throw exception when pass empty weight and unit to setMass function")
     @Test
