@@ -9,10 +9,7 @@ import org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import rockets.dataaccess.DAO;
-import rockets.model.Launch;
-import rockets.model.LaunchServiceProvider;
-import rockets.model.Rocket;
-import rockets.model.User;
+import rockets.model.*;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -28,7 +25,10 @@ public class Neo4jDAOUnitTest {
 
     private LaunchServiceProvider esa;
     private LaunchServiceProvider spacex;
+    private LaunchServiceProvider okb;
     private Rocket rocket;
+    private PayLoad payload;
+    private RocketFamily rf;
 
     @BeforeAll
     public void initializeNeo4j() {
@@ -43,8 +43,12 @@ public class Neo4jDAOUnitTest {
     @BeforeEach
     public void setup() {
         esa = new LaunchServiceProvider("ESA", 1970, "Europe");
+        okb = new LaunchServiceProvider("OKB", 1946, "Russia");
         spacex = new LaunchServiceProvider("SpaceX", 2002, "USA");
         rocket = new Rocket("F9", "Block 5","USA", spacex);
+        //Nam add
+        payload = new PayLoad("satellite", "sputnik 1", okb);
+        rf = new RocketFamily("space");
     }
     @Test
     public void shouldCreateNeo4jDAOSuccessfully() {
@@ -58,10 +62,41 @@ public class Neo4jDAOUnitTest {
         assertNotNull(graphRocket.getId());
         assertEquals(rocket, graphRocket);
         LaunchServiceProvider manufacturer = graphRocket.getManufacturer();
+
         assertNotNull(manufacturer.getId());
         assertEquals(rocket.getWikilink(), graphRocket.getWikilink());
         assertEquals(spacex, manufacturer);
     }
+
+    //cici add
+    @Test
+    public void shouldCreateAPayLoadSuccessfully() {
+        payload.setWikilink("https://en.wikipedia.org/wiki/Payload");
+        //Rocket graphRocket = dao.createOrUpdate(rocket);
+        PayLoad graphPayLoad = dao.createOrUpdate(payload);
+        assertNotNull(graphPayLoad.getId());
+        assertEquals(payload, graphPayLoad);
+        LaunchServiceProvider manufacturer = graphPayLoad.getManufacturer();
+        assertNotNull(manufacturer.getId());
+        assertEquals(payload.getWikilink(), graphPayLoad.getWikilink());
+        assertEquals(okb, manufacturer);
+    }
+
+    //cici add
+    @Test
+    public void shouldCreateARocketFamilySuccessfully() {
+        rf.setWikilink("https://en.wikipedia.org/wiki/Sputnik_(rocket)");
+        RocketFamily graphRocketFamily = dao.createOrUpdate(rf);
+        //PayLoad graphPayLoad = dao.createOrUpdate(payload);
+        assertNotNull(graphRocketFamily.getId());
+        assertEquals(rf, graphRocketFamily);
+        Set<Rocket> rockets = graphRocketFamily.getRockets();
+        assertNotNull(rockets);
+        assertEquals(rf.getWikilink(), graphRocketFamily.getWikilink());
+        //assertEquals(okb, manufacturer);
+    }
+
+
 
     @Test
     public void shouldUpdateRocketAttributeSuccessfully() {
@@ -76,6 +111,40 @@ public class Neo4jDAOUnitTest {
         dao.createOrUpdate(rocket);
         graphRocket = dao.load(Rocket.class, rocket.getId());
         assertEquals(newLink, graphRocket.getWikilink());
+    }
+
+    //nam add
+    @Test
+    public void shouldUpdatePayLoadAttributeSuccessfully() {
+        payload.setWikilink("https://en.wikipedia.org/wiki/Payload");
+
+        //Rocket graphRocket = dao.createOrUpdate(rocket);
+        PayLoad graphPayLoad = dao.createOrUpdate(payload);
+        assertNotNull(graphPayLoad.getId());
+        assertEquals(payload, graphPayLoad);
+
+        String newLink = "http://adifferentlink.com";
+        payload.setWikilink(newLink);
+        dao.createOrUpdate(payload);
+        graphPayLoad = dao.load(PayLoad.class, payload.getId());
+        assertEquals(newLink, graphPayLoad.getWikilink());
+    }
+
+    //nam add
+    @Test
+    public void shouldUpdateRocketFamilyAttributeSuccessfully() {
+        rf.setWikilink("https://en.wikipedia.org/wiki/Sputnik_(rocket)");
+
+        //Rocket graphRocket = dao.createOrUpdate(rocket);
+        RocketFamily graphRf = dao.createOrUpdate(rf);
+        assertNotNull(graphRf.getId());
+        assertEquals(rf, graphRf);
+
+        String newLink = "http://adifferentlink.com";
+        rf.setWikilink(newLink);
+        dao.createOrUpdate(rf);
+        graphRf = dao.load(RocketFamily.class, rf.getId());
+        assertEquals(newLink, graphRf.getWikilink());
     }
 
     @Test
@@ -163,6 +232,19 @@ public class Neo4jDAOUnitTest {
         assertFalse(dao.loadAll(LaunchServiceProvider.class).isEmpty());
         dao.delete(rocket);
         assertTrue(dao.loadAll(Rocket.class).isEmpty());
+        assertFalse(dao.loadAll(LaunchServiceProvider.class).isEmpty());
+    }
+
+    //nam add
+    @Test
+    public void shouldDeletePayLoadWithoutDeleteLSP() {
+        dao.createOrUpdate(payload);
+        assertNotNull(payload.getId());
+        assertNotNull(payload.getManufacturer().getId());
+        assertFalse(dao.loadAll(PayLoad.class).isEmpty());
+        assertFalse(dao.loadAll(LaunchServiceProvider.class).isEmpty());
+        dao.delete(payload);
+        assertTrue(dao.loadAll(PayLoad.class).isEmpty());
         assertFalse(dao.loadAll(LaunchServiceProvider.class).isEmpty());
     }
 

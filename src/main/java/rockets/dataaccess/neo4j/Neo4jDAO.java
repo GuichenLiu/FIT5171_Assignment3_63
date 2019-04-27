@@ -6,11 +6,7 @@ import org.neo4j.ogm.cypher.Filters;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.transaction.Transaction;
 import rockets.dataaccess.DAO;
-import rockets.model.Entity;
-import rockets.model.Launch;
-import rockets.model.LaunchServiceProvider;
-import rockets.model.Rocket;
-import rockets.model.User;
+import rockets.model.*;
 
 import java.util.Collection;
 
@@ -70,6 +66,19 @@ public class Neo4jDAO implements DAO {
                     .and(new Filter("yearFounded", EQUALS, lsp.getYearFounded()))
                     .and(new Filter("country", EQUALS, lsp.getCountry()));
             collection = session.loadAll(LaunchServiceProvider.class, filters);
+        }
+        //cici add
+        else if (clazz.equals(RocketFamily.class)) {
+            RocketFamily rf = (RocketFamily) entity;
+            filters.add(new Filter("name", EQUALS, rf.getName()));
+            collection = session.loadAll(RocketFamily.class, filters);
+            //cici add
+        } else if (clazz.equals(PayLoad.class)) {
+            PayLoad payLoad = (PayLoad) entity;
+            filters.add(new Filter("type", EQUALS, payLoad.getType()))
+                    .and(new Filter("name", EQUALS, payLoad.getName()));
+            collection = session.loadAll(PayLoad.class, filters);
+
         }
         if (!collection.isEmpty()) {
             existingEntity = collection.iterator().next();
