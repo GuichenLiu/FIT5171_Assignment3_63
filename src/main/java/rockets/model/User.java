@@ -24,7 +24,7 @@ public class User extends Entity {
         notBlank(firstName, "first name cannot be null or empty");
 
         if (NameIsValid(firstName)== false){
-            throw new IllegalArgumentException("First name should under 30 characters and contains only charaters");
+            throw new IllegalArgumentException("First name should under 30 characters and contains only characters");
         }
         else this.firstName = firstName;
 
@@ -38,7 +38,7 @@ public class User extends Entity {
         notBlank(lastName, "last name cannot be null or empty");
 
         if ((NameIsValid(lastName)== false)){
-            throw new IllegalArgumentException("Last name should under 30 characters and contains only charaters");
+            throw new IllegalArgumentException("Last name should under 30 characters and contains only characters");
         }
         else
         {this.lastName = lastName;}

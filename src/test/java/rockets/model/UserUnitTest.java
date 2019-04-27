@@ -25,6 +25,22 @@ public class UserUnitTest {
         assertEquals("email cannot be null or empty", exception.getMessage());
     }
 
+    @DisplayName("should throw exception when pass a empty first name to setFirstName function")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "  "})
+    public void shouldThrowExceptionWhenSetFirstNameToEmpty(String fn) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> target.setFirstName(fn));
+        assertEquals("first name cannot be null or empty", exception.getMessage());
+    }
+
+    @DisplayName("should throw exception when pass a empty last name to setLastName function")
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "  "})
+    public void shouldThrowExceptionWhenSetLastNameToEmpty(String ln) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> target.setLastName(ln));
+        assertEquals("last name cannot be null or empty", exception.getMessage());
+    }
+
     @DisplayName("should throw exception when pass null to setEmail function")
     @Test
     public void shouldThrowExceptionWhenSetEmailToNull() {
@@ -71,5 +87,37 @@ public class UserUnitTest {
         User anotherUser = new User();
         anotherUser.setEmail("def@example.com");
         assertFalse(target.equals(anotherUser));
+    }
+
+    @DisplayName("should throw exception when set invalid input to setFirstName function")
+    @Test
+    public void shouldThrowExceptionWhenSetInvalidInputToSetFirstName() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> target.setFirstName("111"));
+        assertEquals("First name should under 30 characters and contains only characters", exception.getMessage());
+
+        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, () -> target.setFirstName("!!!"));
+        assertEquals("First name should under 30 characters and contains only characters", exception.getMessage());
+
+        IllegalArgumentException exception3 = assertThrows(IllegalArgumentException.class, () -> target.setFirstName("nam1"));
+        assertEquals("First name should under 30 characters and contains only characters", exception.getMessage());
+
+        IllegalArgumentException exception4 = assertThrows(IllegalArgumentException.class, () -> target.setFirstName("nam!"));
+        assertEquals("First name should under 30 characters and contains only characters", exception.getMessage());
+    }
+
+    @DisplayName("should throw exception when set invalid input to setLastName function")
+    @Test
+    public void shouldThrowExceptionWhenSetInvalidInputToSetLastName() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> target.setLastName("111"));
+        assertEquals("Last name should under 30 characters and contains only characters", exception.getMessage());
+
+        IllegalArgumentException exception1 = assertThrows(IllegalArgumentException.class, () -> target.setLastName("!!!"));
+        assertEquals("Last name should under 30 characters and contains only characters", exception.getMessage());
+
+        IllegalArgumentException exception3 = assertThrows(IllegalArgumentException.class, () -> target.setLastName("nam1"));
+        assertEquals("Last name should under 30 characters and contains only characters", exception.getMessage());
+
+        IllegalArgumentException exception4 = assertThrows(IllegalArgumentException.class, () -> target.setLastName("nam!"));
+        assertEquals("Last name should under 30 characters and contains only characters", exception.getMessage());
     }
 }
