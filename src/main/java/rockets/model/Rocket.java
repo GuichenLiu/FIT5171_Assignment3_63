@@ -54,7 +54,7 @@ public class Rocket extends Entity {
         notNull(manufacturer);
         //
         if(
-                haveCharaters(name)
+                haveCharacters(name)
                         &&onlyCharacter(country)
                         //&&onlyCharacter(manufacturer)
                         &&isInRange(name,0,30)
@@ -76,7 +76,7 @@ public class Rocket extends Entity {
         }
     }
 
-    public boolean haveCharaters(String name) {
+    public boolean haveCharacters(String name) {
         return name.matches(".*[a-zA-z].*");
 
     }
