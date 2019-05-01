@@ -173,7 +173,7 @@ public class RocketMinerUnitTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2,3})
 
-    public void shouldReturnhighestRevenueLaunchServiceProviders(int k) {
+    public void shouldReturnHighestRevenueLaunchServiceProviders(int k) {
 
         int year= 2017;
         when(dao.loadAll(LaunchServiceProvider.class)).thenReturn(lsps);

@@ -14,7 +14,7 @@ public class Launch extends Entity {
 
     private Rocket launchVehicle;
 
-    private LaunchServiceProvider launchServiceProvider;
+    private LaunchServiceProvider lsp;
 
     private Set<PayLoad> payload;
 
@@ -45,11 +45,11 @@ public class Launch extends Entity {
     }
 
     public LaunchServiceProvider getLaunchServiceProvider() {
-        return launchServiceProvider;
+        return lsp;
     }
 
     public void setLaunchServiceProvider(LaunchServiceProvider launchServiceProvider) {
-        this.launchServiceProvider = launchServiceProvider;
+        this.lsp = launchServiceProvider;
     }
 
     public Set<PayLoad> getPayload() {
@@ -101,12 +101,12 @@ public class Launch extends Entity {
         Launch launch = (Launch) o;
         return Objects.equals(launchDate, launch.launchDate) &&
                 Objects.equals(launchVehicle, launch.launchVehicle) &&
-                Objects.equals(launchServiceProvider, launch.launchServiceProvider) &&
+                Objects.equals(lsp, launch.lsp) &&
                 Objects.equals(orbit, launch.orbit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(launchDate, launchVehicle, launchServiceProvider, orbit);
+        return Objects.hash(launchDate, launchVehicle, lsp, orbit);
     }
 }

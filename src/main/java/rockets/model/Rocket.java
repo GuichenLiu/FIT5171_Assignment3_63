@@ -27,6 +27,8 @@ public class Rocket extends Entity {
     }
 
     public void setPayloads(Set<PayLoad> payloads) {
+
+        notNull(payloads, "payloads cannot be null or empty");
         this.payloads = payloads;
     }
 
@@ -37,9 +39,7 @@ public class Rocket extends Entity {
         return launches;
     }
 
-    public void setLaunches(Set<Launch> launches) {
-        this.launches = launches;
-    }
+    public void setLaunches(Set<Launch> launches) { this.launches = launches; }
 
     /**
      * All parameters shouldn't be null.
@@ -48,7 +48,7 @@ public class Rocket extends Entity {
      * @param country
      * @param manufacturer
      */
-    public Rocket(String name,String variation, String country,LaunchServiceProvider  manufacturer) {
+    public Rocket(String name,String variation, String country,LaunchServiceProvider manufacturer) {
         notNull(name);
         notNull(country);
         notNull(manufacturer);

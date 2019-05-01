@@ -41,7 +41,7 @@ public class RocketFamily extends Entity{
     }
 
     public void setRockets(Set<Rocket> rockets) {
-        notNull(rockets, "rockets cannot be null or empty" );
+        notNull(rockets, "rockets cannot be null or empty");
         this.rockets = rockets;
     }
 

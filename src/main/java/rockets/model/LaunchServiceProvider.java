@@ -22,8 +22,6 @@ public class LaunchServiceProvider extends Entity {
 
     private Set<Rocket> rockets;
 
-
-
     //cc new
     //private Set<Launch> launches;
     private BigDecimal totalRevenue;

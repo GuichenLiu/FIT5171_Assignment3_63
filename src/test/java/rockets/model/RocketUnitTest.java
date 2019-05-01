@@ -12,8 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RocketUnitTest {
 
+    private Rocket bfr;
+
+
     @BeforeEach
     public void setUp() {
+        String name = "BFR";
+        String country = "USA";
+        String variation ="ccc";
+        LaunchServiceProvider  manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
+        bfr = new Rocket(name,variation,country,manufacturer);
     }
 
     @AfterEach
@@ -23,11 +31,6 @@ public class RocketUnitTest {
     @DisplayName("should create rocket successfully when given right parameters to constructor")
     @Test
     public void shouldConstructRocketObject() {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider  manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation,country,manufacturer);
         assertNotNull(bfr);
     }
 
@@ -43,13 +46,6 @@ public class RocketUnitTest {
     @DisplayName("should set rocket massToLEO value")
     @ValueSource(strings = {"10000", "15000"})
     public void shouldSetMassToLEOWhenGivenCorrectValue(String massToLEO) {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-
-        Rocket bfr = new Rocket(name, variation,country, manufacturer);
-
         bfr.setMassToLEO(massToLEO);
         assertEquals(massToLEO, bfr.getMassToLEO());
     }
@@ -57,11 +53,6 @@ public class RocketUnitTest {
     @DisplayName("should throw exception when set massToLEO to null")
     @Test
     public void shouldThrowExceptionWhenSetMassToLEOToNull() {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
         assertThrows(NullPointerException.class, () -> bfr.setMassToLEO(null));
     }
 
@@ -71,15 +62,8 @@ public class RocketUnitTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     public void shouldThrowExceptionWhenSetMassToLEOToInvalid(String massToLEO) {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
-
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToLEO("..//~"));
         assertEquals("MassToLEO should contain numbers", exception.getMessage());
-
         bfr.setMassToLEO("600 to");
         assertEquals("600 to",bfr.getMassToLEO());
     }
@@ -88,18 +72,6 @@ public class RocketUnitTest {
     @DisplayName("should throw exceptions when pass a null MassToGTO to setMassToGTO function")
     @Test
     public void shouldThrowExceptionWhenSetMassToGTOToNull() {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
-
-//        NullPointerException exception = assertThrows(NullPointerException.class,
-//                () -> bfr.setMassToGTO(null));
-//        assertEquals("MassToGTO cannot be null or empty", exception.getMessage());
-
-
-
         assertThrows(NullPointerException.class, () -> bfr.setMassToGTO(null));
     }
 
@@ -109,12 +81,6 @@ public class RocketUnitTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     public void shouldThrowExceptionWhenSetMassToGTOToEmpty(String massToGTO) {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
-
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToGTO(massToGTO));
         assertEquals("MassToGTO cannot be null or empty", exception.getMessage());
     }
@@ -125,12 +91,6 @@ public class RocketUnitTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     public void shouldThrowExceptionWhenSetMassToGTOToInvalid(String massToGTO) {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
-
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToGTO("..//~"));
         assertEquals("MassToGTO should contain numbers", exception.getMessage());
 
@@ -143,12 +103,6 @@ public class RocketUnitTest {
     @Test
 
     public void shouldThrowExceptionWhenSetMassToOtherToNull() {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
-
         NullPointerException exception = assertThrows(NullPointerException.class,
                 () -> bfr.setMassToOther(null));
         assertEquals("MassToOther cannot be null or empty", exception.getMessage());
@@ -160,12 +114,6 @@ public class RocketUnitTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     public void shouldThrowExceptionWhenSetMassToOtherToEmpty(String massToOther) {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
-
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> bfr.setMassToOther(massToOther));
         assertEquals("MassToOther cannot be null or empty", exception.getMessage());
     }
@@ -175,18 +123,18 @@ public class RocketUnitTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     public void shouldThrowExceptionWhenSetMassToOtherToInvalid(String massToOther) {
-        String name = "BFR";
-        String country = "USA";
-        String variation ="ccc";
-        LaunchServiceProvider manufacturer = new LaunchServiceProvider("SpaceX", 2002, "USA");
-        Rocket bfr = new Rocket(name,variation, country,manufacturer);
-
-
         bfr.setMassToOther("600 to");
         assertEquals("600 to",bfr.getMassToOther());
 
         bfr.setMassToOther("600.12");
         assertEquals("600.12",bfr.getMassToOther());
+    }
+
+    @DisplayName("should throw exception when pass null to setPayLoads function")
+    @Test
+    public void shouldThrowExceptionWhenSetPayLoadsToNull() {
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> bfr.setPayloads(null));
+        assertEquals("payloads cannot be null or empty", exception.getMessage());
     }
 
 }
