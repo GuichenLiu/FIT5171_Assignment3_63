@@ -1,11 +1,15 @@
 package rockets.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.neo4j.ogm.annotation.Relationship;
+
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
+import static org.neo4j.ogm.annotation.Relationship.OUTGOING;
 
 public class Rocket extends Entity {
 
@@ -34,6 +38,8 @@ public class Rocket extends Entity {
     }
 
     // cc new
+    @Relationship(type = "PROVIDES", direction = OUTGOING)
+    @JsonIgnore
     private Set<Launch> launches;
 
     public Set<Launch> getLaunches() {
