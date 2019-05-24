@@ -1,5 +1,6 @@
 package rockets.model;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -74,6 +75,8 @@ public class Rocket extends Entity {
                     "                       \" manufacturer should not be null \"+\n" +
                     "                    \" country should under 30 characters, contain only alphabetic characters \"+\n");
         }
+
+        this.launches = new LinkedHashSet<>();
     }
 
     public boolean haveCharacters(String name) {

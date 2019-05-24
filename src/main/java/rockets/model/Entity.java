@@ -1,9 +1,19 @@
 package rockets.model;
 
-public abstract class Entity {
-    private Long id;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.Property;
 
+public abstract class Entity {
+    @Id
+    @GeneratedValue
+    protected Long id;
+
+    @Property(name = "wikilink")
     private String wikilink;
+
+    public Entity() {
+    }
 
     public String getWikilink() {
         return wikilink;

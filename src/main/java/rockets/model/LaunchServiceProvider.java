@@ -1,6 +1,11 @@
 package rockets.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Sets;
+import org.neo4j.ogm.annotation.CompositeIndex;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Property;
+import org.neo4j.ogm.annotation.Relationship;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -9,17 +14,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.apache.commons.lang3.Validate.*;
+import static org.neo4j.ogm.annotation.Relationship.OUTGOING;
 import static rockets.model.Launch.LaunchOutcome.SUCCESSFUL;
 
+@NodeEntity
+@CompositeIndex(properties = {"name", "yearFounded", "country"}, unique = true)
 public class LaunchServiceProvider extends Entity {
+    @Property(name = "name")
     private String name;
 
+    @Property(name = "yearFounded")
     private int yearFounded;
 
+    @Property(name = "country")
     private String country;
 
+    @Property(name = "headquarters")
     private String headquarters;
 
+    @Relationship(type = "MANUFACTURES", direction= OUTGOING)
+    @JsonIgnore
     private Set<Rocket> rockets;
 
     //cc new

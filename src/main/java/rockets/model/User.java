@@ -1,11 +1,14 @@
 package rockets.model;
 
+import org.neo4j.ogm.annotation.NodeEntity;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 
 
 import static org.apache.commons.lang3.Validate.notBlank;
 
+@NodeEntity
 public class User extends Entity {
 
     private String firstName;

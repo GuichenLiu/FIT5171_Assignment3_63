@@ -5,12 +5,14 @@ import org.junit.jupiter.api.*;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.harness.ServerControls;
 import org.neo4j.harness.TestServerBuilders;
+import org.neo4j.ogm.config.Configuration;
 import org.neo4j.ogm.drivers.embedded.driver.EmbeddedDriver;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import rockets.dataaccess.DAO;
 import rockets.model.*;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
@@ -19,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class Neo4jDAOUnitTest {
+    private static final String TEST_DB = "target/test-data/test-db";
+
     private DAO dao;
     private Session session;
     private SessionFactory sessionFactory;
@@ -32,12 +36,11 @@ public class Neo4jDAOUnitTest {
 
     @BeforeAll
     public void initializeNeo4j() {
-        ServerControls embeddedDatabaseServer = TestServerBuilders.newInProcessBuilder().newServer();
-        GraphDatabaseService dbService = embeddedDatabaseServer.graph();
-        EmbeddedDriver driver = new EmbeddedDriver(dbService);
+        EmbeddedDriver driver = createEmbeddedDriver(TEST_DB);
+
         sessionFactory = new SessionFactory(driver, User.class.getPackage().getName());
         session = sessionFactory.openSession();
-        dao = new Neo4jDAO(session);
+        dao = new Neo4jDAO(sessionFactory);
     }
 
     @BeforeEach
@@ -50,6 +53,17 @@ public class Neo4jDAOUnitTest {
         payload = new PayLoad("satellite", "sputnik 1", okb);
         rf = new RocketFamily("space");
     }
+
+    private static EmbeddedDriver createEmbeddedDriver(String fileDir) {
+        File file = new File(fileDir);
+        Configuration configuration = new Configuration.Builder()
+                .uri(file.toURI().toString()) // For Embedded
+                .build();
+        EmbeddedDriver driver = new EmbeddedDriver();
+        driver.configure(configuration);
+        return driver;
+    }
+
     @Test
     public void shouldCreateNeo4jDAOSuccessfully() {
         assertNotNull(dao);
