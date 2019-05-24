@@ -30,6 +30,7 @@ public class AppSystemTest {
     private List<Launch> launches;
     private static String dbAddress;
 
+    //test
     @BeforeAll
     public static void classSetUp() throws Exception {
         ClassPathResource resource = new ClassPathResource("app.properties");
