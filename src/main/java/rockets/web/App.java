@@ -279,6 +279,15 @@ public class App {
 
     // TODO: Need to TDD this
     private static void handleGetCreateRocket() {
+        get("/rocket/create", (req, res) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("missionName", "");
+            attributes.put("time", "01-Jan-2000 00:00:00");
+            attributes.put("location", "");
+            attributes.put("description", "");
+
+            return new ModelAndView(attributes, "create_rocket.html.ftl");
+        }, new FreeMarkerEngine());
     }
 
 
