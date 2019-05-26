@@ -16,8 +16,6 @@ import java.util.Set;
 
 class LaunchServiceProviderUnitTest {
     private LaunchServiceProvider target;
-    private String headquarters;
-    private Set<Rocket> rockets;
 
 
     @BeforeEach

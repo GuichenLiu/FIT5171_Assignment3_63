@@ -1,18 +1,13 @@
 package rockets.model;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Objects;
 import static org.apache.commons.lang3.Validate.notBlank;
 import static org.apache.commons.lang3.Validate.notNull;
 
 public class PayLoad extends Entity{
 
-    //satellite, space probe, spacecraft
     private String type;
-    //payload name
     private String name;
-    //weight of payload
     private String mass;
 
     private LaunchServiceProvider manufacturer;

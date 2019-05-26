@@ -16,8 +16,6 @@ public class RocketFamily extends Entity{
 
         if (onlyCharacter(name) && isInRange(name,0,20) ) {
             this.name = name;
-
-            //new
             rockets = Sets.newLinkedHashSet();
         }
         else {

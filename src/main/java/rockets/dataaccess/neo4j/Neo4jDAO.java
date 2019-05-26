@@ -32,8 +32,6 @@ public class Neo4jDAO implements DAO {
     public Neo4jDAO(String dbAddress) {
         File file = new File(dbAddress);
         Configuration configuration = new Configuration.Builder()
-                //.uri(neoServer.boltURI().toString()) // For Bolt
-                //.uri(neoServer.httpURI().toString()) // For HTTP
                 .uri(file.toURI().toString()) // For Embedded
                 .build();
         EmbeddedDriver driver = new EmbeddedDriver();
@@ -42,9 +40,6 @@ public class Neo4jDAO implements DAO {
         sessionFactory = new SessionFactory(driver, User.class.getPackage().getName());
         session = sessionFactory.openSession();
     }
-//    public Neo4jDAO(Session session) {
-//        this.session = session;
-//    }
 
     @Override
     public <T extends Entity> T load(Class<T> clazz, Long id) {

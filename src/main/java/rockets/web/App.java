@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rockets.dataaccess.DAO;
 import rockets.dataaccess.neo4j.Neo4jDAO;
+import rockets.model.LaunchServiceProvider;
 import rockets.model.Rocket;
 import rockets.model.User;
 import spark.ModelAndView;
@@ -277,12 +278,11 @@ public class App {
     private static void handlePostCreateRocket() {
     }
 
-    // TODO: Need to TDD this
     private static void handleGetCreateRocket() {
         get("/rocket/create", (req, res) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("missionName", "");
-            attributes.put("time", "01-Jan-2000 00:00:00");
+            attributes.put("time", "");
             attributes.put("location", "");
             attributes.put("description", "");
 

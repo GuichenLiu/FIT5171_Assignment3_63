@@ -49,7 +49,6 @@ public class Neo4jDAOUnitTest {
         okb = new LaunchServiceProvider("OKB", 1946, "Russia");
         spacex = new LaunchServiceProvider("SpaceX", 2002, "USA");
         rocket = new Rocket("F9", "Block 5","USA", spacex);
-        //Nam add
         payload = new PayLoad("satellite", "sputnik 1", okb);
         rf = new RocketFamily("space");
     }
@@ -82,11 +81,9 @@ public class Neo4jDAOUnitTest {
         assertEquals(spacex, manufacturer);
     }
 
-    //cici add
     @Test
     public void shouldCreateAPayLoadSuccessfully() {
         payload.setWikilink("https://en.wikipedia.org/wiki/Payload");
-        //Rocket graphRocket = dao.createOrUpdate(rocket);
         PayLoad graphPayLoad = dao.createOrUpdate(payload);
         assertNotNull(graphPayLoad.getId());
         assertEquals(payload, graphPayLoad);
@@ -96,18 +93,15 @@ public class Neo4jDAOUnitTest {
         assertEquals(okb, manufacturer);
     }
 
-    //cici add
     @Test
     public void shouldCreateARocketFamilySuccessfully() {
         rf.setWikilink("https://en.wikipedia.org/wiki/Sputnik_(rocket)");
         RocketFamily graphRocketFamily = dao.createOrUpdate(rf);
-        //PayLoad graphPayLoad = dao.createOrUpdate(payload);
         assertNotNull(graphRocketFamily.getId());
         assertEquals(rf, graphRocketFamily);
         Set<Rocket> rockets = graphRocketFamily.getRockets();
         assertNotNull(rockets);
         assertEquals(rf.getWikilink(), graphRocketFamily.getWikilink());
-        //assertEquals(okb, manufacturer);
     }
 
 
@@ -127,12 +121,9 @@ public class Neo4jDAOUnitTest {
         assertEquals(newLink, graphRocket.getWikilink());
     }
 
-    //nam add
     @Test
     public void shouldUpdatePayLoadAttributeSuccessfully() {
         payload.setWikilink("https://en.wikipedia.org/wiki/Payload");
-
-        //Rocket graphRocket = dao.createOrUpdate(rocket);
         PayLoad graphPayLoad = dao.createOrUpdate(payload);
         assertNotNull(graphPayLoad.getId());
         assertEquals(payload, graphPayLoad);
@@ -144,12 +135,9 @@ public class Neo4jDAOUnitTest {
         assertEquals(newLink, graphPayLoad.getWikilink());
     }
 
-    //nam add
     @Test
     public void shouldUpdateRocketFamilyAttributeSuccessfully() {
         rf.setWikilink("https://en.wikipedia.org/wiki/Sputnik_(rocket)");
-
-        //Rocket graphRocket = dao.createOrUpdate(rocket);
         RocketFamily graphRf = dao.createOrUpdate(rf);
         assertNotNull(graphRf.getId());
         assertEquals(rf, graphRf);
@@ -249,7 +237,6 @@ public class Neo4jDAOUnitTest {
         assertFalse(dao.loadAll(LaunchServiceProvider.class).isEmpty());
     }
 
-    //nam add
     @Test
     public void shouldDeletePayLoadWithoutDeleteLSP() {
         dao.createOrUpdate(payload);

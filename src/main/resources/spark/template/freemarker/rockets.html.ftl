@@ -17,18 +17,18 @@
 </div>
 
 <div>
-<#if errorMsg?? && errorMsg?has_content>
-    <li><h4 class="errorMsg">${errorMsg}</h4></li>
-<#elseif rockets?? && rockets?has_content>
-    <ul>
-        <#list rockets as rocket>
-            <li><a href="/rocket/${rocket.id}">${rocket.name}</a></li>
-        </#list>
+    <#if errorMsg?? && errorMsg?has_content>
+        <li><h4 class="errorMsg">${errorMsg}</h4></li>
+    <#elseif rockets?? && rockets?has_content>
+        <ul>
+            <#list rockets as rocket>
+                <li><a href="/rocket/${rocket.id}">${rocket.name}</a></li>
+            </#list>
 
-    </ul>
-<#else>
-    <p>No rocket yet in the system. <a href="/rocket/create">Create one</a> now!</p>
-</#if>
+        </ul>
+    <#else>
+        <p>No rocket yet in the system. <a href="/rocket/create">Create one</a> now!</p>
+    </#if>
 
 </div>
 

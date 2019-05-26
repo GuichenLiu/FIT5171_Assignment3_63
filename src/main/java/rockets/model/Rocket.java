@@ -37,7 +37,6 @@ public class Rocket extends Entity {
         this.payloads = payloads;
     }
 
-    // cc new
     @Relationship(type = "PROVIDES", direction = OUTGOING)
     @JsonIgnore
     private Set<Launch> launches;

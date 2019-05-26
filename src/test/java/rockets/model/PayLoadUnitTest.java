@@ -11,8 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PayLoadUnitTest {
 
-    //private PayLoad target;
-
     @BeforeEach
     public void setUp() {
     }

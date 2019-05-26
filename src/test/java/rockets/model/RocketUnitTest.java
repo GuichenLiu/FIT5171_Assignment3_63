@@ -45,6 +45,7 @@ public class RocketUnitTest {
 
     @DisplayName("should set rocket massToLEO value")
     @ValueSource(strings = {"10000", "15000"})
+    @ParameterizedTest
     public void shouldSetMassToLEOWhenGivenCorrectValue(String massToLEO) {
         bfr.setMassToLEO(massToLEO);
         assertEquals(massToLEO, bfr.getMassToLEO());
@@ -56,8 +57,6 @@ public class RocketUnitTest {
         assertThrows(NullPointerException.class, () -> bfr.setMassToLEO(null));
     }
 
-    //A1
-    // cici edited
     @DisplayName("should throw exception when pass a invalid MassToLEO to setMassToLEO function")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
@@ -68,14 +67,12 @@ public class RocketUnitTest {
         assertEquals("600 to",bfr.getMassToLEO());
     }
 
-    // cici edited
     @DisplayName("should throw exceptions when pass a null MassToGTO to setMassToGTO function")
     @Test
     public void shouldThrowExceptionWhenSetMassToGTOToNull() {
         assertThrows(NullPointerException.class, () -> bfr.setMassToGTO(null));
     }
 
-    // cici edited
     @DisplayName("should throw exception when pass a empty MassToGTO to setMassToLEO function")
 
     @ParameterizedTest
@@ -85,7 +82,6 @@ public class RocketUnitTest {
         assertEquals("MassToGTO cannot be null or empty", exception.getMessage());
     }
 
-    // cici edited
     @DisplayName("should throw exception when pass a invalid MassToGTO to setMassToGTO function")
 
     @ParameterizedTest
@@ -98,7 +94,6 @@ public class RocketUnitTest {
         assertEquals("600 to",bfr.getMassToGTO());
     }
 
-    // cici edited
     @DisplayName("should throw exceptions when pass a null MassToOther to setMassToOther function")
     @Test
 
@@ -108,7 +103,6 @@ public class RocketUnitTest {
         assertEquals("MassToOther cannot be null or empty", exception.getMessage());
     }
 
-    // cici edited
     @DisplayName("should throw exception when pass a empty MassToOther to setMassToOther function")
 
     @ParameterizedTest
@@ -118,7 +112,6 @@ public class RocketUnitTest {
         assertEquals("MassToOther cannot be null or empty", exception.getMessage());
     }
 
-    // cici edited
     @DisplayName("should throw exception when pass a invalidMassToOther to setMassToOther function")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})

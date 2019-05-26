@@ -36,8 +36,6 @@ public class LaunchServiceProvider extends Entity {
     @JsonIgnore
     private Set<Rocket> rockets;
 
-    //cc new
-    //private Set<Launch> launches;
     private BigDecimal totalRevenue;
     private int percentage;
     private int Dominant;
@@ -105,8 +103,6 @@ public class LaunchServiceProvider extends Entity {
 
 
     public void setHeadquarters(String headquarters) {
-
-        //ADDED
         notBlank(headquarters, "headquarter cannot be null or empty" );
         if (isInRange(headquarters,0, 30)) {
             this.headquarters = headquarters;
@@ -135,9 +131,6 @@ public class LaunchServiceProvider extends Entity {
         return Objects.hash(name, yearFounded, country);
     }
 
-
-
-    //new
     public BigDecimal getTotalRevenue(int year) {
         BigDecimal totalRevenue = BigDecimal.valueOf(  0.00);
         Set<Rocket> set = getRockets();
@@ -146,7 +139,6 @@ public class LaunchServiceProvider extends Entity {
             for (Launch st : set1) {
                 if (st.getLaunchDate().getYear() == year) {
                     if (st.getPrice().compareTo(BigDecimal.ZERO) > 0)
-//                    if(st.getPrice().compareTo(BigDecimal.valueOf(0.00))==0)
                     {
                     totalRevenue =totalRevenue.add(st.getPrice());
                 }}
@@ -166,7 +158,6 @@ public class LaunchServiceProvider extends Entity {
             size+=set1.size();
             for (Launch st : set1)
             {
-                //size+=1;
                 if (st.getLaunchOutcome() == SUCCESSFUL)
                 {
                     succ += 1;
@@ -178,7 +169,6 @@ public class LaunchServiceProvider extends Entity {
         {
             percentage = succ / size;
         }
-        //System.out.println(percentage);
         return percentage;
     }
 
